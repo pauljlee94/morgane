@@ -4,7 +4,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'morgane',
+    title: 'Morgane A. Laine',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -50,7 +50,7 @@ export default {
 
   webfontloader: {
     google: {
-      families: ['Playfair Display:400,600,700']
+      families: ['Raleway:400,600,700']
     }
   },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
