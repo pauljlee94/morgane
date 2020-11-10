@@ -12,7 +12,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    script: [{ src: "https://kit.fontawesome.com/b8708477a7.js" }],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -21,6 +22,9 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    { src: '~/plugins/vue-masonry' },
+    { src: '~/plugins/vue-lazyload' },
+    { src: '~/plugins/vue-img' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -33,9 +37,22 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
+  
   modules: [
+    '@nuxtjs/prismic',
+    'nuxt-webfontloader',
   ],
+  prismic: {
+    endpoint: "https://morgane.cdn.prismic.io/api/v2",
+    linkResolver: '@/plugins/link-resolver',
+    htmlSerializer: '@/plugins/html-serializer'
+  },
 
+  webfontloader: {
+    google: {
+      families: ['Playfair Display:400,600,700']
+    }
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
   }

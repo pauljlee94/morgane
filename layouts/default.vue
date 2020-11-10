@@ -1,62 +1,54 @@
 <template>
-  <div>
-    <Nuxt />
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-12 relative min-h-screen">
+    <header class="flex justify-between py-8 sm:py-12 items-center">
+      <h1 class="text-3xl sm:text-4xl font-bold">Morgane Laíne</h1>
+      <div class="border-4 p-1 border-black hover:bg-black hover:text-white transition duration-200">
+      <a :href="resume" target="_blank" class="text-sm sm:text-2xl font-semibold">Résumé</a>
+      </div>
+    </header>
+    <main class="pb-64">
+      <Nuxt />
+    </main>
+    <footer class="absolute right-0 left-0 h-40 bottom-0 border-t py-10 text-4xl text-gray-600 flex justify-center space-x-10">
+      <a :href="contact.linkedin" target="_blank" aria-label="linkedin" class="hover:text-gray-900 transition duration-200">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a :href="`mailto:${contact.email}`" target="_blank" aria-label="email" class="hover:text-gray-900 transition duration-200">
+        <i class="fas fa-envelope-square"></i>
+      </a>
+      <a :href="`tel:${contact.phone}`" target="_blank" aria-label="phone" class="hover:text-gray-900 transition duration-200">
+        <i class="fas fa-phone-square"></i>
+      </a>
+    </footer>
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return{
+      resume: null,
+      contact: {
+        linkedin: null,
+        email: null,
+        phone: null
+      }
+    }
+  },
+  async fetch() {
+    const data = await this.$prismic.api.query(this.$prismic.predicates.at("document.type", "homepage")).then(promise =>{
+      return promise.results[0].data
+    })
+    this.resume = data.resume.url
+    this.contact.linkedin = data.linkedin.url
+    this.contact.email = data.email[0].text
+    this.contact.phone = data.phone[0].text
+  }
+}
+</script>
+
 <style>
-html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
+  body {
+    font-family: 'Playfair Display', serif;
+  }
 </style>
