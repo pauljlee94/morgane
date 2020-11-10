@@ -23,6 +23,6 @@ export default {
 
 <style>
 #portfolio .column {
-  margin-bottom:30px;
+  margin-bottom: 30px;
 }
 </style>
