@@ -2,9 +2,7 @@
   <div class="max-w-screen-xl mx-auto px-4 sm:px-12 relative min-h-screen">
     <header class="flex justify-between py-8 sm:py-12 items-center">
       <h1 class="text-3xl sm:text-4xl font-bold uppercase">Morgane Lainé</h1>
-      <div class="border-4 p-1 border-black hover:bg-black hover:text-white transition duration-200">
-      <a :href="resume" target="_blank" class="text-sm sm:text-2xl font-semibold uppercase">Résumé</a>
-      </div>
+      <a :href="resume" target="_blank" class="text-sm sm:text-2xl font-semibold uppercase border-4 p-1 border-black hover:bg-black hover:text-white transition duration-200">Résumé</a>
     </header>
     <main class="pb-64">
       <Nuxt />
